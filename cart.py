@@ -7,11 +7,11 @@ def add(item, quantity, price):
     print(f"{quantity} - {item} @ ${price} each added to the shopping cart.")
 
 def remove(item, quantity):
-    if item in shopping_cart and shopping_cart[item][0] - quantity >= 0:
+    if shopping_cart[item][0] - quantity >= 0:
         shopping_cart[item][0] = shopping_cart[item][0] - quantity
         print(f"You now have {shopping_cart[item][0]} {item}s")
     else:
-        print(f"You either don't have {item} in your shopping cart, or you don't have enough to remove.")
+        print(f"You don't have enough {item}s in your shopping cart to remove {quantity}.")
 
 def show():
     print("Shopping Cart:")
@@ -34,6 +34,11 @@ def run():
             add(item,quantity, price)
         elif query == "Remove":
             item = input("Enter an item to remove: ").capitalize()
+            if item in shopping_cart:
+                print(f"You have {shopping_cart[item][0]} {item}s in your cart, how many would you like to remove?")
+            else:
+                print(f"Error, {item} is not in your shopping cart, please try again")
+                continue            
             quantity = int(input(f"Enter the number of {item}s to remove: "))
             remove(item, quantity)
         elif query == "Show":
@@ -43,6 +48,7 @@ def run():
             print("Shopping cart cleared")
         elif query == "Quit":
             shopping = False
+            print("Thank you for shopping with us, please see your receipt")
             show()
         else:
             clear_output()
