@@ -20,8 +20,10 @@ def show():
         print(f"\t{shopping_cart[item][0]} - {item}s ${shopping_cart[item][1]:.2f}")
         total_price += shopping_cart[item][0] * shopping_cart[item][1]
     print(f"Shopping Cart total = ${total_price:.2f}")
+
 def clear():
     shopping_cart.clear()
+    print("Your shopping cart has been cleared of all items.")
         
 def run():
     shopping = True
@@ -45,7 +47,6 @@ def run():
             show()
         elif query == "Clear":
             clear()
-            print("Shopping cart cleared")
         elif query == "Quit":
             shopping = False
             print("Thank you for shopping with us, please see your receipt")
